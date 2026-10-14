@@ -1,0 +1,135 @@
+/* Tailwind로 표현하기 어려운 보조 스타일 (Tailwind Play CDN은 외부 CSS의 @apply를 처리하지 않으므로 일반 CSS로 작성) */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem; /* 고정 헤더에 섹션 제목이 가려지지 않도록 */
+}
+
+/* 히어로 배경: 회색 계열 그라디언트 */
+.hero-bg {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(0, 0, 0, 0.06), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(0, 0, 0, 0.04), transparent 40%),
+    linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+}
+
+/* 히어로 제목 음영 */
+.hero-title {
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+/* 섹션 제목 */
+.section-title {
+  margin-bottom: 3rem;
+  text-align: center;
+  font-size: 1.875rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #0f172a;
+}
+
+@media (min-width: 640px) {
+  .section-title {
+    font-size: 2.25rem;
+  }
+}
+
+/* 기술 스택 카드 */
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  background-color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #334155;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+  border-color: #0f172a;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.skill-icon {
+  display: flex;
+  width: 3rem;
+  height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  background-color: #0f172a;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+/* 프로젝트 카드 */
+.project-card {
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.5rem;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.project-thumb {
+  display: flex;
+  height: 12rem;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f172a 0%, #475569 100%);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background-color: #f1f5f9;
+  color: #0f172a;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* 스크롤 등장 애니메이션 (script.js에서 .is-visible 추가) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 움직임 줄이기 설정을 한 사용자 존중 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .skill-card,
+  .project-card {
+    transition: none;
+  }
+}
